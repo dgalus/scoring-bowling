@@ -1,0 +1,10 @@
+#!/usr/bin/env php
+<?php
+$autoloadFile = __DIR__ . "/../src/app.php";
+
+if (!file_exists($autoloadFile)) {
+    echo "app.php not found." . PHP_EOL;
+    exit(1);
+}
+
+require $autoloadFile;
