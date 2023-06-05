@@ -5,13 +5,36 @@ require_once "scoring_bowling/game/ui/Cli.php";
 require_once "scoring_bowling/validators/NonNegativeIntValidator.php";
 require_once "scoring_bowling/validators/IntRangeValidator.php";
 
+/**
+ * Game logic class.
+ */
 class Game
 {
+    /**
+     * Total score earned until now in game.
+     */
     private int $score;
+
+    /**
+     * Variable to iterate over the frames (game rounds).
+     */
     private int $frameIterator;
+
+    /**
+     * Frames of the game.
+     */
     private array $frames;
+
+    /**
+     * Interface to interact with player.
+     */
     private Ui $ui;
 
+    /**
+     * Constructor. Sets variables, creates frames and user interface.
+     *
+     * @return void
+     */
     function __construct()
     {
         $this->score = 0;
@@ -24,6 +47,13 @@ class Game
         $this->ui = new Cli();
     }
 
+    /**
+     * Method to start game.
+     * Iterates over frames and allows player to perform actions.
+     * Contains most of the game logic.
+     *
+     * @return void
+     */
     public function play()
     {
         $this->ui->printWelcomeMessage();
@@ -82,6 +112,11 @@ class Game
         $this->ui->printGameplaySummary($this->frames);
     }
 
+    /**
+     * Method to calculate player score at current game stage. Saves current player score in $score variable.
+     *
+     * @return void
+     */
     private function calculateScore()
     {
         $this->score = 0;
@@ -125,12 +160,23 @@ class Game
         $this->score += $this->frames[9]->getBonusPoints();
     }
 
+    /**
+     * Game roll action.
+     *
+     * @param  array<int, Validator> $validators Validators for user input.
+     * @return int Number of pins knocked down (given by player and validated).
+     */
     public function roll(array $validators): int
     {
         # can be private
         return $this->ui->getPinsKnockedDown($validators);
     }
 
+    /**
+     * Getter for $score variable.
+     *
+     * @return int Player score at current game stage.
+     */
     public function getScore(): int
     {
         # can be private
