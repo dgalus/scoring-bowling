@@ -69,6 +69,11 @@ class Frame
      */
     public function setKnockedDownPins(int $pins): void
     {
+        if($pins > 10 || $pins < 0) {
+            throw new FrameException(
+                "Invalid value."
+            );
+        }
         if ($this->isLastFrame) {
             if ($this->rollsCount < 2) {
                 $this->rollsPins[$this->rollsCount] = $pins;
@@ -88,7 +93,7 @@ class Frame
                 }
             }
         } else {
-            if ($this->rollsCount < 2 && $this->rollsPins[0] === 10) {
+            if ($this->rollsCount >= 2 || $this->rollsPins[0] === 10) {
                 throw new FrameException(
                     "Not allowed to roll anymore for this frame."
                 );

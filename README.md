@@ -21,4 +21,6 @@ A strike is when the player knocks down all 10 pins on his first try. The bonus 
 - Skrypt uruchamia się poleceniem `php app.php`.
 - Skrypt został przetestowany na wersji PHP 8.2.6, na systemie z rodziny GNU/Linux.
 - Dokumentacja znajduje się w katalogu `docs`. Można ją wygenerować samodzielnie poleceniem `phpdoc -d ./src -t ./docs`.
+- Jeśli chcesz wykonać testy, to w katalogu `tools` umieść `phpunit`, a następnie wykonaj polecenie `./tools/phpunit tests/ --include-path=./src/`.
+- Testy wykonano przy użyciu narzędzia `phpunit` w wersji 10.2.1.
 

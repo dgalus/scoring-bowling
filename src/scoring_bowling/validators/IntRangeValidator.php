@@ -38,6 +38,7 @@ class IntRangeValidator implements Validator
      */
     public function isValid($value): bool
     {
+        if(!is_numeric($value)) return false;
         $testedValue = intval($value);
         if (
             is_int($testedValue) &&
